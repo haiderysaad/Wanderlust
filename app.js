@@ -1,6 +1,18 @@
 if(process.env.NODE_ENV !="production"){
     require('dotenv').config();
 }
+const dbUrl=process.env.ATLASDB_URL;
+const sessionSecret=process.env.SECRET;
+const mapToken=process.env.MAP_TOKEN;
+if (!dbUrl) {
+    throw new Error("ATLASDB_URL environment variable is required");
+}
+if (!sessionSecret) {
+    throw new Error("SECRET environment variable is required");
+}
+if (!mapToken) {
+    throw new Error("MAP_TOKEN environment variable is required");
+}
 const express=require("express");
 const app=express();
 const mongoose=require("mongoose");
@@ -18,14 +30,6 @@ const LocalStrategy = require("passport-local").Strategy;
 const User=require("./models/user.js");
 const userRouter = require("./routes/user.js");
 
-const dbUrl=process.env.ATLASDB_URL;
-
-main().then(()=>{console.log("connected to DB")}).catch(err => console.log(err));
-
-async function main(){
-    await mongoose.connect(dbUrl);
-};
-
 app.engine('ejs',ejsmate);
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
@@ -37,7 +41,7 @@ app.use(express.static(path.join(__dirname,"/public")));
 const store = MongoStore.create({
     mongoUrl: dbUrl,
     crypto: {
-        secret: process.env.SECRET,
+        secret: sessionSecret,
     },
     touchAfter: 24 * 3600,
 });
@@ -48,7 +52,7 @@ store.on("error",(err)=>{
 
 const sessionoptions={
     store,
-    secret:process.env.SECRET,
+    secret:sessionSecret,
     resave:false,
     saveUninitialized:true,
     cookie:{
@@ -91,6 +95,15 @@ app.use((err,req,res,next)=>{
     res.status(statusCode).render("listings/error.ejs",{message});
 });
 
-app.listen(8080,()=>{
-    console.log("server is listening");
-});
+mongoose.connect(dbUrl)
+    .then(()=>{
+        console.log("connected to DB");
+        const port=process.env.PORT || 8080;
+        app.listen(port,()=>{
+            console.log(`server is listening on port ${port}`);
+        });
+    })
+    .catch(err=>{
+        console.error("Failed to connect to MongoDB:",err);
+        process.exit(1);
+    });

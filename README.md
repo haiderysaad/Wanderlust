@@ -93,6 +93,27 @@ The server runs on:
 http://localhost:8080
 ```
 
+## Deploying to Render
+
+Create a **Web Service** for this repository and use these settings:
+
+- **Runtime:** Node
+- **Build command:** `npm install`
+- **Start command:** `npm start`
+
+Add the following environment variables in the Render service settings:
+
+```env
+ATLASDB_URL=mongodb+srv://<username>:<password>@cluster.mongodb.net/wanderlust
+SECRET=your_session_secret
+CLOUD_NAME=your_cloud_name
+CLOUD_API_KEY=your_cloud_api_key
+CLOUD_API_SECRET=your_cloud_api_secret
+MAP_TOKEN=your_mapbox_token
+```
+
+`ATLASDB_URL`, `SECRET`, and `MAP_TOKEN` are required for the service to start. Allow the Render service to connect to your MongoDB Atlas cluster (for example, by configuring the cluster's network access rules). Render supplies the listening `PORT` automatically.
+
 ## Usage
 
 - Sign up for a new account or log in
