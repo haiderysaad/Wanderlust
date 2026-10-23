@@ -14,17 +14,22 @@ async function seedFeaturedListings() {
 
     let added = 0;
     for (const listing of featuredListings) {
-        const exists = await Listing.exists({
+        const result = await Listing.findOneAndUpdate({
             title: listing.title,
-            location: listing.location
+            owner: { $exists: false }
+        }, {
+            $set: listing
+        }, {
+            upsert: true,
+            new: true,
+            setDefaultsOnInsert: true
         });
-        if (!exists) {
-            await Listing.create(listing);
+        if (result) {
             added += 1;
         }
     }
 
-    console.log(`Added ${added} featured stays.`);
+    console.log(`Added or updated ${added} featured stays.`);
 }
 
 seedFeaturedListings()
