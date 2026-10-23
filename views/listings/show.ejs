@@ -28,10 +28,10 @@
 
         <%if(currUser){%>
         <h4 class="mt-4 mb-3">Leave a Review</h4>
-        <form action="/listings/<%=listing._id%>/reviews" method="POST" novalidate class="needs-validation">
+        <form action="/listings/<%=listing._id%>/reviews" method="POST" class="needs-validation">
             <fieldset class="starability-slot">
                 <legend>Rating:</legend>
-                <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                <input type="radio" id="first-rate1" name="review[rating]" value="1" required title="Please choose a star rating." />
                 <label for="first-rate1" title="Terrible">1 star</label>
                 <input type="radio" id="first-rate2" name="review[rating]" value="2" />
                 <label for="first-rate2" title="Not good">2 stars</label>
