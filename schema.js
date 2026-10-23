@@ -1,4 +1,8 @@
 const Joi=require('joi');
+const categories = require("./init/categories.js");
+const listingCategories = categories
+    .filter(({ value }) => value !== "trending")
+    .map(({ value }) => value);
 
 module.exports.listingSchema=Joi.object({ // FIX: was joi.object (lowercase — ReferenceError)
     listing: Joi.object({
@@ -6,6 +10,7 @@ module.exports.listingSchema=Joi.object({ // FIX: was joi.object (lowercase — 
         description: Joi.string().required(),
         location: Joi.string().required(),
         country: Joi.string().required(),
+        category: Joi.string().valid(...listingCategories).required(),
         price: Joi.number().required().min(0),
         image: Joi.object({          // FIX: was Joi.string() — form sends image as nested object
             url: Joi.string().allow("",null),

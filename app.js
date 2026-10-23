@@ -77,7 +77,6 @@ app.use((req, res, next) => {
     res.locals.error = req.flash("error");
     res.locals.currUser = req.user;
     res.locals.currentUser = req.user;
-    console.log("MIDDLEWARE HIT, currentUser =", req.user); // temp
     next();
 });
 

@@ -13,6 +13,14 @@
                 <textarea name="listing[description]" placeholder="Enter description" class="form-control" required></textarea>
                 <div class="invalid-feedback">Please Enter a Short Description</div>
             </div>
+            <div class="mb-3">
+                <label class="form-label" for="listing-category">Stay category</label>
+                <select id="listing-category" name="listing[category]" class="form-select" required>
+                    <% for (let category of categories.filter(({ value }) => value !== "trending")) { %>
+                        <option value="<%= category.value %>"><%= category.label %></option>
+                    <% } %>
+                </select>
+            </div>
 
             <div class="mb-3">
                 <label class="form-label">Upload Image</label>

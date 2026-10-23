@@ -5,6 +5,8 @@ Wanderlust is a travel and listing platform where users can discover, create, an
 ## Features
 
 - Browse travel listings with images and location details
+- Filter by Trending, Rooms, Iconic Cities, Mountains, Castle, Artics, Camping, Farms, Domes, and Boats
+- Search stays by name or destination and view featured stays
 - Create new listings for destinations
 - Edit and delete existing listings
 - Add reviews and ratings for places
@@ -24,6 +26,14 @@ Wanderlust is a travel and listing platform where users can discover, create, an
 - Cloudinary for image hosting
 - Bootstrap for UI styling
 - Mapbox integration for map-related features
+
+To add the curated sample stays to a database without deleting existing listings, set `ATLASDB_URL` in `.env` and run:
+
+```bash
+npm run seed:featured
+```
+
+This command is safe to rerun; it only adds sample stays that are not already present. It creates unowned sample listings, while user-created listings remain associated with their owners.
 
 ## Project Structure
 

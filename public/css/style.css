@@ -59,8 +59,202 @@ body{
 
 .card-img-top {
     width: 100%;
-    height: 20rem;
+    height: 17rem;
     object-fit: cover;
+}
+
+.listing-explorer {
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+}
+
+.category-bar {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    padding: 0.4rem 0 1rem;
+    scrollbar-width: thin;
+}
+
+.category-filter {
+    display: flex;
+    min-width: 4.5rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.35rem 0.2rem 0.75rem;
+    border-bottom: 2px solid transparent;
+    color: #717171;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.category-filter i {
+    font-size: 1.15rem;
+}
+
+.category-filter:hover,
+.category-filter.active {
+    border-bottom-color: #222;
+    color: #222;
+}
+
+.listing-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 1.15rem 0 1.4rem;
+}
+
+.listing-count {
+    margin: 0;
+    color: #717171;
+}
+
+.tax-toggle {
+    display: flex;
+    align-items: center;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid #ddd;
+    border-radius: 0.75rem;
+    white-space: nowrap;
+}
+
+.tax-toggle .form-check {
+    margin: 0;
+}
+
+.listing-card {
+    height: 100%;
+    overflow: hidden;
+    border: none;
+}
+
+.listing-image-link {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 0.8rem;
+}
+
+.listing-image-link .card-img-top {
+    display: block;
+    border-radius: 0.8rem;
+    transition: transform 0.25s ease;
+}
+
+.listing-image-link:hover .card-img-top {
+    transform: scale(1.04);
+}
+
+.featured-badge {
+    position: absolute;
+    top: 0.8rem;
+    left: 0.8rem;
+    padding: 0.4rem 0.65rem;
+    border-radius: 2rem;
+    background: white;
+    color: #222;
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.featured-badge i {
+    color: #fe424d;
+}
+
+.listing-card-details {
+    padding-top: 0.85rem;
+}
+
+.listing-card-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.listing-card-heading h2 {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.listing-card-heading h2 a {
+    color: #222;
+    text-decoration: none;
+}
+
+.listing-category {
+    color: #717171;
+    font-size: 0.73rem;
+    white-space: nowrap;
+}
+
+.listing-location {
+    margin: 0.25rem 0;
+    color: #717171;
+    font-size: 0.9rem;
+}
+
+.listing-price {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.tax-info {
+    display: none;
+    color: #717171;
+}
+
+.tax-info.visible {
+    display: inline;
+}
+
+.empty-listings {
+    padding: 4rem 1rem;
+    text-align: center;
+}
+
+.empty-listings > i {
+    margin-bottom: 1rem;
+    color: #fe424d;
+    font-size: 2rem;
+}
+
+.empty-listings h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.empty-listings p {
+    color: #717171;
+}
+
+.listing-search {
+    max-width: 30rem;
+    flex: 1;
+}
+
+.listing-search .form-control {
+    border-radius: 2rem 0 0 2rem;
+}
+
+.listing-search .btn-search {
+    border-radius: 0 2rem 2rem 0;
+    border-color: #fe424d;
+    background-color: #fe424d;
+    color: #fff;
+}
+
+.listing-search .btn-search:hover {
+    border-color: #e33b46;
+    background-color: #e33b46;
+    color: #fff;
 }
 
 .card-body{
@@ -160,4 +354,25 @@ body{
     height: 400px;
     width:80vh;
 
+}
+
+@media (max-width: 767.98px) {
+    .navbar {
+        height: auto;
+        min-height: 5rem;
+    }
+
+    .listing-search {
+        max-width: none;
+        margin: 0.75rem 0;
+    }
+
+    .listing-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .category-bar {
+        gap: 1.25rem;
+    }
 }

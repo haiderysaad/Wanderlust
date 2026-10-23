@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema; 
 const Review=require("./review.js");
+const categories = require("../init/categories.js");
 
 const listingSchema = new mongoose.Schema({
   title: String,
@@ -12,6 +13,15 @@ const listingSchema = new mongoose.Schema({
 },
   location: String,
   country: String,
+  category: {
+    type: String,
+    enum: categories.filter(({ value }) => value !== "trending").map(({ value }) => value),
+    default: "rooms"
+  },
+  featured: {
+    type: Boolean,
+    default: false
+  },
   image: {
     url: String,
     filename: String
