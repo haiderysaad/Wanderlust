@@ -7,7 +7,7 @@ const Review=require("../models/review.js");
 const {isLoggedIn}=require("../middleware.js");
 const { isOwner } = require("../middleware.js");
 const multer=require('multer');
-const {storage}=require("../cloudConfig.js")
+const {storage}=require("../cloudconfig.js")
 const upload=multer({storage})
 const listingController=require("../controller/listings.js")
 
