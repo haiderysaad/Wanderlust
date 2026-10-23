@@ -19,7 +19,7 @@
         <div class="tax-toggle">
             <div class="form-check form-check-reverse form-switch">
                 <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
-                <label class="form-check-label" for="switchCheckDefault">Display total after taxes</label>
+                <label class="form-check-label" for="switchCheckDefault">Display total after taxes (18% GST)</label>
             </div>
         </div>
     </div>
@@ -46,7 +46,10 @@
                                 <span class="listing-category"><%= categories.find(category => category.value === (listing.category || "rooms")).label %></span>
                             </div>
                             <p class="listing-location"><%= listing.location %>, <%= listing.country %></p>
-                            <p class="listing-price"><strong>₹<%= (listing.price || 0).toLocaleString("en-IN") %></strong> / night <span class="tax-info">+ 18% GST</span></p>
+                            <p class="listing-price">
+                                <span class="price-before-tax"><strong>₹<%= (listing.price || 0).toLocaleString("en-IN") %></strong> / night</span>
+                                <span class="price-after-tax"><strong>₹<%= Math.round((listing.price || 0) * 1.18).toLocaleString("en-IN") %></strong> / night (incl. 18% GST)</span>
+                            </p>
                         </div>
                     </article>
                 </div>
@@ -65,8 +68,6 @@
 <script>
     const taxSwitch = document.getElementById("switchCheckDefault");
     taxSwitch.addEventListener("change", () => {
-        document.querySelectorAll(".tax-info").forEach((info) => {
-            info.classList.toggle("visible", taxSwitch.checked);
-        });
+        document.querySelector(".listing-explorer").classList.toggle("tax-inclusive", taxSwitch.checked);
     });
 </script>

@@ -206,12 +206,16 @@ body{
     font-size: 0.9rem;
 }
 
-.tax-info {
+.price-after-tax {
     display: none;
     color: #717171;
 }
 
-.tax-info.visible {
+.tax-inclusive .price-before-tax {
+    display: none;
+}
+
+.tax-inclusive .price-after-tax {
     display: inline;
 }
 
